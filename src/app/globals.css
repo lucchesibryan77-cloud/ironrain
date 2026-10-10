@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+@theme {
+  /* Iron Rain design tokens — editorial, ruled-paper, one hot accent */
+  --color-ink: #0b0d10;
+  --color-panel: #12151a;
+  --color-panel-2: #171b21;
+  --color-line-dark: #24282f;
+  --color-paper: #f4f3ee;
+  --color-paper-2: #ecebe4;
+  --color-line: #d9d6cc;
+  --color-mute: #666b73;
+  --color-mute-dark: #969ca6;
+  --color-signal: #e8401c;
+  --color-signal-deep: #c33213;
+  --color-ember: #ff5c33;
+
+  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", monospace;
+
+  --animate-marquee: marquee 46s linear infinite;
+  --animate-blink: blink 1.6s ease-in-out infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.25; }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-signal);
+  color: #fff;
+}
+
+/* ---- signature textures ---- */
+
+/* diagonal rain streaks, for dark panels */
+.rainlines {
+  background-image: repeating-linear-gradient(
+    115deg,
+    rgba(255, 255, 255, 0.045) 0px,
+    rgba(255, 255, 255, 0.045) 1px,
+    transparent 1px,
+    transparent 14px
+  );
+}
+
+/* fine engineering grid, for light panels */
+.gridlines {
+  background-image:
+    repeating-linear-gradient(0deg, rgba(11, 13, 16, 0.05) 0 1px, transparent 1px 56px),
+    repeating-linear-gradient(90deg, rgba(11, 13, 16, 0.05) 0 1px, transparent 1px 56px);
+}
+
+/* duotone photo treatment so portraits read as one art direction */
+.photo {
+  filter: grayscale(1) contrast(1.12) brightness(0.98);
+}
+
+/* outlined display type (used sparingly, hero accents) */
+.text-outline {
+  -webkit-text-stroke: 1px rgba(244, 243, 238, 0.35);
+  color: transparent;
+}
+.text-outline-ink {
+  -webkit-text-stroke: 1px rgba(11, 13, 16, 0.35);
+  color: transparent;
+}
+
+/* ---- typography rules ---- */
+
+.kicker {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.6875rem;
+  line-height: 1.4;
+}
+
+.display {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+}
+
+/* prose treatment for insight articles */
+.article-body h2 {
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: -0.01em;
+  margin: 2.25rem 0 0.75rem;
+}
+.article-body p {
+  margin: 1rem 0;
+  line-height: 1.75;
+  color: #2a2e35;
+}
+.article-body ul {
+  margin: 1rem 0 1rem 1.25rem;
+  list-style: square;
+}
+.article-body li {
+  margin: 0.5rem 0;
+  line-height: 1.7;
+  color: #2a2e35;
+}
+.article-body strong {
+  color: var(--color-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
