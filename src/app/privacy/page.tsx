@@ -45,9 +45,9 @@ export default function PrivacyPage() {
   return (
     <section className="bg-paper">
       <div className="mx-auto max-w-4xl px-5 py-20 md:py-28">
-        <p className="kicker text-signal-deep">Legal</p>
+        <p className="figcaption text-signal-deep">Legal</p>
         <h1 className="display mt-4 text-4xl uppercase text-ink md:text-6xl">Privacy Policy</h1>
-        <p className="kicker mt-4 text-mute">Last updated: January 5, 2026</p>
+        <p className="figcaption mt-4 text-mute">Last updated: January 5, 2026</p>
         <div className="article-body mt-12 border-t border-line pt-10">
           {sections.map((s) => (
             <div key={s.h}>

@@ -1,33 +1,28 @@
 @import "tailwindcss";
 
 @theme {
-  /* Iron Rain design tokens — editorial, ruled-paper, one hot accent */
-  --color-ink: #0b0d10;
-  --color-panel: #12151a;
-  --color-panel-2: #171b21;
-  --color-line-dark: #24282f;
-  --color-paper: #f4f3ee;
-  --color-paper-2: #ecebe4;
-  --color-line: #d9d6cc;
-  --color-mute: #666b73;
-  --color-mute-dark: #969ca6;
-  --color-signal: #e8401c;
-  --color-signal-deep: #c33213;
-  --color-ember: #ff5c33;
+  /* Iron Rain v2 — "High-Desert Civic": sand, dusk navy, clay */
+  --color-ink: #26211a;
+  --color-dusk: #203349;
+  --color-panel: #29405b;
+  --color-panel-2: #304863;
+  --color-line-dark: #41566e;
+  --color-paper: #f8f3e9;
+  --color-paper-2: #efe7d5;
+  --color-line: #d8cdb4;
+  --color-mute: #6e6452;
+  --color-mute-dark: #9daebf;
+  --color-signal: #b4542f;
+  --color-signal-deep: #96421f;
+  --color-ember: #c96b3f;
 
-  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", monospace;
+  --font-sans: var(--font-franklin), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-zilla), Georgia, "Times New Roman", serif;
+  --font-mono: ui-monospace, "SFMono-Regular", Consolas, monospace;
 
-  --animate-marquee: marquee 46s linear infinite;
-  --animate-blink: blink 1.6s ease-in-out infinite;
-
-  @keyframes marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.25; }
+  @keyframes fade-rise {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: none; }
   }
 }
 
@@ -44,72 +39,45 @@ body {
 
 ::selection {
   background: var(--color-signal);
-  color: #fff;
+  color: #fff8ee;
 }
 
-/* ---- signature textures ---- */
+/* ---- type utilities ---- */
 
-/* diagonal rain streaks, for dark panels */
-.rainlines {
-  background-image: repeating-linear-gradient(
-    115deg,
-    rgba(255, 255, 255, 0.045) 0px,
-    rgba(255, 255, 255, 0.045) 1px,
-    transparent 1px,
-    transparent 14px
-  );
-}
-
-/* fine engineering grid, for light panels */
-.gridlines {
-  background-image:
-    repeating-linear-gradient(0deg, rgba(11, 13, 16, 0.05) 0 1px, transparent 1px 56px),
-    repeating-linear-gradient(90deg, rgba(11, 13, 16, 0.05) 0 1px, transparent 1px 56px);
-}
-
-/* duotone photo treatment so portraits read as one art direction */
-.photo {
-  filter: grayscale(1) contrast(1.12) brightness(0.98);
-}
-
-/* outlined display type (used sparingly, hero accents) */
-.text-outline {
-  -webkit-text-stroke: 1px rgba(244, 243, 238, 0.35);
-  color: transparent;
-}
-.text-outline-ink {
-  -webkit-text-stroke: 1px rgba(11, 13, 16, 0.35);
-  color: transparent;
-}
-
-/* ---- typography rules ---- */
-
-.kicker {
-  font-family: var(--font-mono);
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
+.figcaption {
+  font-family: var(--font-sans);
   font-size: 0.6875rem;
-  line-height: 1.4;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
 .display {
-  font-family: var(--font-sans);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 0.95;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.04;
+  text-wrap: balance;
 }
 
-/* prose treatment for insight articles */
+/* warm duotone so borrowed portraits read as one art direction */
+.photo {
+  filter: sepia(0.32) contrast(1.04) brightness(0.97) saturate(0.9);
+}
+
+/* article pages */
 .article-body h2 {
-  font-weight: 700;
-  font-size: 1.5rem;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1.75rem;
   letter-spacing: -0.01em;
-  margin: 2.25rem 0 0.75rem;
+  margin: 2.5rem 0 0.75rem;
 }
 .article-body p {
-  margin: 1rem 0;
-  line-height: 1.75;
-  color: #2a2e35;
+  margin: 1.1rem 0;
+  line-height: 1.8;
+  color: #443d31;
+  max-width: 72ch;
 }
 .article-body ul {
   margin: 1rem 0 1rem 1.25rem;
@@ -117,17 +85,14 @@ body {
 }
 .article-body li {
   margin: 0.5rem 0;
-  line-height: 1.7;
-  color: #2a2e35;
+  line-height: 1.75;
+  color: #443d31;
 }
 .article-body strong {
   color: var(--color-ink);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-marquee {
-    animation: none;
-  }
   html {
     scroll-behavior: auto;
   }

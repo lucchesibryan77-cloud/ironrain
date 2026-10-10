@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
-import { Archivo, IBM_Plex_Mono } from "next/font/google";
+import { Libre_Franklin, Zilla_Slab } from "next/font/google";
 import { site } from "@/lib/site";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import "./globals.css";
 
-const archivo = Archivo({ subsets: ["latin"], variable: "--font-archivo" });
-const plexMono = IBM_Plex_Mono({
+const franklin = Libre_Franklin({ subsets: ["latin"], variable: "--font-franklin" });
+const zilla = Zilla_Slab({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-plex-mono",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-zilla",
 });
 
 export const metadata: Metadata = {
@@ -72,7 +72,7 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${archivo.variable} ${plexMono.variable}`}>
+    <html lang="en" className={`${franklin.variable} ${zilla.variable}`}>
       <body className="flex min-h-screen flex-col font-sans">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         <Nav />

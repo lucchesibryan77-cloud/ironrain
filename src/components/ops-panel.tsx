@@ -1,47 +1,44 @@
 import { site } from "@/lib/site";
 
 const rows = [
-  { k: "ENDPOINTS UNDER WATCH", v: "3,412" },
-  { k: "MEDIAN IR RESPONSE", v: "14m 52s" },
-  { k: "CLIENT UPTIME / 12MO", v: "99.98%" },
-  { k: "PHISHING SIM CLICK RATE", v: "1.8%" },
+  { k: "Endpoints under 24/7 watch", v: "3,412" },
+  { k: "Median incident response", v: "14 min 52 sec" },
+  { k: "Client uptime, trailing 12 months", v: "99.98%" },
+  { k: "Ransom paid by clients, ever", v: "$0" },
 ];
 
-const bars = [42, 58, 37, 64, 49, 71, 55, 78, 62, 84, 73, 91];
-
+/** The "Operating Record" — proof presented like a filed document. */
 export function OpsPanel() {
   return (
-    <div className="border border-line-dark bg-panel">
-      <div className="flex items-center justify-between border-b border-line-dark px-5 py-3">
-        <p className="kicker text-mute-dark">RainWatch SOC — Live Posture</p>
-        <span className="flex items-center gap-2">
-          <span className="h-1.5 w-1.5 animate-blink rounded-full bg-emerald-400" />
-          <span className="kicker text-emerald-400">Operational</span>
-        </span>
+    <div className="border border-line bg-white">
+      <div className="flex items-center justify-between border-b border-line px-5 py-3">
+        <p className="figcaption text-mute">Operating record — Q3 2026</p>
+        <p className="figcaption text-signal-deep">On file</p>
       </div>
-      <dl className="divide-y divide-line-dark">
+
+      {/* sun-over-mesa mark — geometry only */}
+      <div className="border-b border-line px-5 py-6">
+        <svg viewBox="0 0 260 70" className="h-14 w-full" aria-hidden="true">
+          <path d="M130 12a26 26 0 0 1 26 26H104a26 26 0 0 1 26-26Z" className="fill-signal" />
+          <rect x="10" y="42" width="240" height="2" className="fill-dusk" />
+          <rect x="34" y="50" width="192" height="2" className="fill-dusk" opacity="0.5" />
+          <rect x="70" y="58" width="120" height="2" className="fill-dusk" opacity="0.25" />
+        </svg>
+      </div>
+
+      <dl className="divide-y divide-line">
         {rows.map((r) => (
-          <div key={r.k} className="flex items-center justify-between px-5 py-3.5">
-            <dt className="kicker text-mute-dark">{r.k}</dt>
-            <dd className="font-mono text-sm text-paper">{r.v}</dd>
+          <div key={r.k} className="flex items-baseline justify-between gap-4 px-5 py-3.5">
+            <dt className="text-sm text-ink/75">{r.k}</dt>
+            <dd className="font-mono text-sm font-semibold text-ink">{r.v}</dd>
           </div>
         ))}
       </dl>
-      <div className="border-t border-line-dark px-5 py-4">
-        <p className="kicker mb-3 text-mute-dark">Threats contained / trailing 12 wks</p>
-        <div className="flex h-16 items-end gap-1.5" aria-hidden="true">
-          {bars.map((h, i) => (
-            <div
-              key={i}
-              className={`flex-1 ${i === bars.length - 1 ? "bg-signal" : "bg-line-dark"}`}
-              style={{ height: `${h}%` }}
-            />
-          ))}
-        </div>
-      </div>
-      <div className="border-t border-line-dark px-5 py-3">
-        <p className="kicker text-mute-dark">
-          Client line <span className="text-signal">{site.hotline}</span> — answered 24/7
+
+      <div className="border-t border-line px-5 py-3.5">
+        <p className="text-xs leading-5 text-mute">
+          Client line <span className="font-semibold text-signal-deep">{site.hotline}</span> — answered
+          24/7. Figures reviewed monthly by the operations lead.
         </p>
       </div>
     </div>

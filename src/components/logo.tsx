@@ -1,33 +1,27 @@
 import Link from "next/link";
 
-export function LogoMark({ className = "h-7 w-7" }: { className?: string }) {
+/** Sun-over-mesa mark — crisp geometry, no illustration. */
+export function LogoMark({ className = "h-8 w-8", light = false }: { className?: string; light?: boolean }) {
   return (
     <svg viewBox="0 0 32 32" className={className} aria-hidden="true">
-      <rect width="32" height="32" className="fill-ink" />
-      {/* rain streaks falling into a line */}
-      <g className="stroke-paper" strokeWidth="2.4" strokeLinecap="square">
-        <line x1="9" y1="7" x2="7" y2="15" />
-        <line x1="16" y1="5" x2="14" y2="17" />
-        <line x1="23" y1="7" x2="21" y2="15" />
-      </g>
-      <line x1="6" y1="24" x2="26" y2="24" className="stroke-signal" strokeWidth="2.8" strokeLinecap="square" />
+      <path d="M16 7a7 7 0 0 1 7 7H9a7 7 0 0 1 7-7Z" className="fill-signal" />
+      <rect x="5" y="17" width="22" height="2.4" className={light ? "fill-paper" : "fill-dusk"} />
+      <rect x="9" y="22" width="14" height="2.4" className={light ? "fill-paper" : "fill-dusk"} opacity="0.55" />
     </svg>
   );
 }
 
-export function Logo({ dark = true }: { dark?: boolean }) {
+export function Logo({ dark = false }: { dark?: boolean }) {
   return (
     <Link href="/" className="group flex items-center gap-3" aria-label="Iron Rain SecOps Solutions — home">
-      <LogoMark />
+      <LogoMark light={dark} />
       <span className="flex flex-col leading-none">
-        <span
-          className={`font-sans text-[15px] font-extrabold tracking-tight uppercase ${
-            dark ? "text-paper" : "text-ink"
-          }`}
-        >
-          Iron<span className="text-signal">/</span>Rain
+        <span className={`font-serif text-xl font-semibold tracking-tight ${dark ? "text-paper" : "text-ink"}`}>
+          Iron Rain
         </span>
-        <span className="kicker mt-1 text-[9px] text-mute-dark group-hover:text-signal transition-colors">
+        <span
+          className={`figcaption mt-1 text-[9px] ${dark ? "text-mute-dark" : "text-mute"} group-hover:text-signal transition-colors`}
+        >
           SecOps Solutions
         </span>
       </span>

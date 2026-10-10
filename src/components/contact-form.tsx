@@ -17,7 +17,7 @@ type FormData = z.infer<typeof schema>;
 type Errors = Partial<Record<keyof FormData, string>>;
 
 const inputClass =
-  "w-full border border-line bg-white px-4 py-3 text-sm text-ink outline-none transition-colors placeholder:text-mute/60 focus:border-signal";
+  "w-full border border-line bg-[#fffdf7] px-4 py-3 text-sm text-ink outline-none transition-colors placeholder:text-mute/60 focus:border-signal focus:bg-white";
 
 export function ContactForm() {
   const [form, setForm] = useState<FormData>({
@@ -58,7 +58,7 @@ export function ContactForm() {
   if (sent) {
     return (
       <div className="border border-line bg-white px-6 py-12 text-center md:px-10">
-        <p className="kicker text-signal-deep">Request drafted</p>
+        <p className="figcaption text-signal-deep">Request drafted</p>
         <h3 className="mt-4 text-2xl font-extrabold uppercase tracking-tight">
           Your email client just opened.
         </h3>
@@ -69,7 +69,7 @@ export function ContactForm() {
         <button
           type="button"
           onClick={() => setSent(false)}
-          className="kicker mt-8 border border-ink px-5 py-3 text-ink transition-colors hover:bg-ink hover:text-paper"
+          className="figcaption mt-8 border border-ink px-5 py-3 text-ink transition-colors hover:bg-ink hover:text-paper"
         >
           Edit the message
         </button>
@@ -81,22 +81,22 @@ export function ContactForm() {
     <form onSubmit={onSubmit} noValidate className="border border-line bg-white p-6 md:p-10">
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         <div>
-          <label htmlFor="cf-name" className="kicker mb-2 block text-mute">Name</label>
+          <label htmlFor="cf-name" className="figcaption mb-2 block text-mute">Name</label>
           <input id="cf-name" className={inputClass} value={form.name} onChange={(e) => update("name", e.target.value)} placeholder="Jane Doe" autoComplete="name" />
           {errors.name && <p className="mt-2 font-mono text-xs text-signal-deep">{errors.name}</p>}
         </div>
         <div>
-          <label htmlFor="cf-company" className="kicker mb-2 block text-mute">Company</label>
+          <label htmlFor="cf-company" className="figcaption mb-2 block text-mute">Company</label>
           <input id="cf-company" className={inputClass} value={form.company} onChange={(e) => update("company", e.target.value)} placeholder="Acme Dental" autoComplete="organization" />
           {errors.company && <p className="mt-2 font-mono text-xs text-signal-deep">{errors.company}</p>}
         </div>
         <div>
-          <label htmlFor="cf-email" className="kicker mb-2 block text-mute">Work email</label>
+          <label htmlFor="cf-email" className="figcaption mb-2 block text-mute">Work email</label>
           <input id="cf-email" type="email" className={inputClass} value={form.email} onChange={(e) => update("email", e.target.value)} placeholder="jane@acmedental.com" autoComplete="email" />
           {errors.email && <p className="mt-2 font-mono text-xs text-signal-deep">{errors.email}</p>}
         </div>
         <div>
-          <label htmlFor="cf-size" className="kicker mb-2 block text-mute">Team size</label>
+          <label htmlFor="cf-size" className="figcaption mb-2 block text-mute">Team size</label>
           <select id="cf-size" className={inputClass} value={form.size} onChange={(e) => update("size", e.target.value)}>
             {["1–25", "26–75", "76–150", "151–250", "250+"].map((s) => (
               <option key={s}>{s}</option>
@@ -104,7 +104,7 @@ export function ContactForm() {
           </select>
         </div>
         <div className="sm:col-span-2">
-          <label htmlFor="cf-topic" className="kicker mb-2 block text-mute">What do you need?</label>
+          <label htmlFor="cf-topic" className="figcaption mb-2 block text-mute">What do you need?</label>
           <select id="cf-topic" className={inputClass} value={form.topic} onChange={(e) => update("topic", e.target.value)}>
             {[
               "Managed IT",
@@ -120,7 +120,7 @@ export function ContactForm() {
           </select>
         </div>
         <div className="sm:col-span-2">
-          <label htmlFor="cf-message" className="kicker mb-2 block text-mute">
+          <label htmlFor="cf-message" className="figcaption mb-2 block text-mute">
             What&apos;s going on?
           </label>
           <textarea id="cf-message" rows={5} className={inputClass} value={form.message} onChange={(e) => update("message", e.target.value)} placeholder="We have ~40 staff in Albuquerque, our IT provider went quiet, and our cyber insurance renewal is in six weeks…" />
@@ -128,8 +128,8 @@ export function ContactForm() {
         </div>
       </div>
       <div className="mt-8 flex flex-col items-start justify-between gap-4 border-t border-line pt-6 sm:flex-row sm:items-center">
-        <p className="kicker text-mute">Replies within one business day · No spam, ever</p>
-        <button type="submit" className="kicker border border-signal bg-signal px-6 py-4 text-white transition-colors hover:bg-signal-deep hover:border-signal-deep">
+        <p className="figcaption text-mute">Replies within one business day · No spam, ever</p>
+        <button type="submit" className="figcaption border border-signal bg-signal px-6 py-4 text-white transition-colors hover:bg-signal-deep hover:border-signal-deep">
           Send request →
         </button>
       </div>

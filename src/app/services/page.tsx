@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { services, products } from "@/lib/services";
-import { SectionHead, ArrowLink, Kicker } from "@/components/ui";
+import { SectionHead, ArrowLink, Label } from "@/components/ui";
 import { CtaBand } from "@/components/cta";
 
 export const metadata: Metadata = {
@@ -32,47 +32,38 @@ const faqs = [
 export default function ServicesPage() {
   return (
     <>
-      <section className="rainlines border-b border-line-dark bg-ink">
-        <div className="mx-auto max-w-7xl px-5 py-20 md:px-10 md:py-28">
-          <Kicker className="text-mute-dark">Services &amp; packages</Kicker>
-          <h1 className="display mt-4 max-w-4xl text-5xl uppercase text-paper md:text-7xl">
-            Four practices. One accountable team.
-          </h1>
-          <p className="mt-6 max-w-2xl text-base leading-7 text-paper/70">
-            Everything we do rolls up to one promise: your business keeps running. Each practice below
-            has a defined scope, a named lead, and reporting you can hold us to.
+      <section className="border-b border-line-dark bg-dusk text-paper">
+        <div className="mx-auto max-w-7xl px-5 py-16 md:px-10 md:py-24">
+          <h1 className="display max-w-4xl text-4xl md:text-6xl">Four practices. One accountable team.</h1>
+          <p className="mt-6 max-w-2xl text-[15px] leading-8 text-paper/75">
+            Everything we do rolls up to one promise: your business keeps running. Each practice has a
+            defined scope, a named lead, and reporting you can hold us to.
           </p>
         </div>
       </section>
 
       <section className="border-b border-line bg-paper">
         <div className="mx-auto max-w-7xl px-5 py-20 md:px-10 md:py-28">
-          <SectionHead index="01" label="Practice areas" title="The work" />
-          <div className="grid grid-cols-1 gap-px border border-line bg-line md:grid-cols-2">
+          <SectionHead title="The work" note="Every practice, scoped in plain English with the artifacts you'll own at the end." />
+          <div className="border-t border-line">
             {services.map((s) => (
               <Link
                 key={s.slug}
                 href={`/services/${s.slug}`}
-                className="group flex flex-col bg-paper p-8 transition-colors hover:bg-paper-2 md:p-10"
+                className="group grid grid-cols-1 gap-4 border-b border-line py-10 transition-colors hover:bg-paper-2/70 md:grid-cols-[1fr_1.4fr_auto] md:gap-10"
               >
-                <div className="flex items-baseline justify-between">
-                  <span className="font-mono text-sm text-mute">{s.index}</span>
-                  <span className="kicker text-signal-deep opacity-0 transition-opacity group-hover:opacity-100">
-                    Details →
-                  </span>
-                </div>
-                <h3 className="display mt-4 text-3xl uppercase text-ink group-hover:text-signal md:text-4xl">
+                <h2 className="font-serif text-3xl font-semibold tracking-tight text-ink transition-colors group-hover:text-signal">
                   {s.name}
-                </h3>
-                <p className="mt-4 flex-1 text-sm leading-6 text-mute">{s.short}</p>
-                <ul className="mt-6 space-y-2 border-t border-line pt-5">
-                  {s.included.slice(0, 3).map((item) => (
-                    <li key={item} className="flex gap-3 text-xs leading-5 text-ink/80">
-                      <span className="mt-1.5 h-1 w-3 shrink-0 bg-signal" aria-hidden="true" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+                </h2>
+                <div>
+                  <p className="max-w-2xl text-[15px] leading-7 text-ink/70">{s.short}</p>
+                  <p className="figcaption mt-4 text-[10px] text-mute">
+                    {s.included[0]} · plus {s.included.length - 1} more line items
+                  </p>
+                </div>
+                <span className="text-sm font-semibold text-signal-deep md:self-start md:pt-1">
+                  Details <span aria-hidden="true" className="inline-block transition-transform group-hover:translate-x-1">→</span>
+                </span>
               </Link>
             ))}
           </div>
@@ -81,19 +72,22 @@ export default function ServicesPage() {
 
       <section className="border-b border-line bg-paper-2">
         <div className="mx-auto max-w-7xl px-5 py-20 md:px-10 md:py-28">
-          <SectionHead index="02" label="Fixed-scope packages" title="Productized services" />
+          <SectionHead
+            title="Fixed-scope packages"
+            note="Three productized services with the price printed. Scoped in a week, delivered on a schedule."
+          />
           <div className="grid grid-cols-1 gap-px border border-line bg-line lg:grid-cols-3">
             {products.map((p) => (
               <div key={p.code} className="flex flex-col bg-paper">
-                <div className="border-b border-line px-6 py-4">
-                  <span className="kicker text-signal-deep">{p.kind}</span>
+                <div className="border-b border-line px-7 py-4">
+                  <Label className="text-signal-deep">{p.kind}</Label>
                 </div>
-                <div className="flex-1 px-6 py-8">
-                  <h3 className="text-2xl font-extrabold uppercase tracking-tight">{p.name}</h3>
-                  <p className="mt-2 font-mono text-sm font-medium text-signal-deep">{p.price}</p>
-                  <p className="mt-5 text-sm leading-6 text-mute">{p.blurb}</p>
+                <div className="flex-1 px-7 py-8">
+                  <h3 className="font-serif text-2xl font-semibold tracking-tight">{p.name}</h3>
+                  <p className="mt-2 font-mono text-sm font-semibold text-signal-deep">{p.price}</p>
+                  <p className="mt-5 text-sm leading-7 text-ink/70">{p.blurb}</p>
                 </div>
-                <div className="border-t border-line px-6 py-4">
+                <div className="border-t border-line px-7 py-5">
                   <ArrowLink href="/contact">Get this scoped</ArrowLink>
                 </div>
               </div>
@@ -104,12 +98,12 @@ export default function ServicesPage() {
 
       <section className="border-b border-line bg-paper">
         <div className="mx-auto max-w-7xl px-5 py-20 md:px-10 md:py-28">
-          <SectionHead index="03" label="Common questions" title="Asked before signing" />
-          <div className="grid grid-cols-1 gap-px border border-line bg-line md:grid-cols-2">
+          <SectionHead title="Asked before signing" />
+          <div className="grid grid-cols-1 gap-x-14 md:grid-cols-2">
             {faqs.map((f) => (
-              <div key={f.q} className="bg-paper px-6 py-8 md:px-8">
-                <h3 className="text-lg font-extrabold uppercase tracking-tight">{f.q}</h3>
-                <p className="mt-3 text-sm leading-6 text-mute">{f.a}</p>
+              <div key={f.q} className="border-t border-line py-8">
+                <h3 className="font-serif text-xl font-semibold tracking-tight">{f.q}</h3>
+                <p className="mt-3 max-w-xl text-sm leading-7 text-ink/70">{f.a}</p>
               </div>
             ))}
           </div>

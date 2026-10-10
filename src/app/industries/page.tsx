@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { SectionHead, ArrowLink, Kicker } from "@/components/ui";
+import { SectionHead, ArrowLink, Label } from "@/components/ui";
 import { CtaBand } from "@/components/cta";
 
 export const metadata: Metadata = {
@@ -63,13 +62,10 @@ const industries = [
 export default function IndustriesPage() {
   return (
     <>
-      <section className="rainlines border-b border-line-dark bg-ink">
-        <div className="mx-auto max-w-7xl px-5 py-20 md:px-10 md:py-28">
-          <Kicker className="text-mute-dark">Industries we serve</Kicker>
-          <h1 className="display mt-4 max-w-4xl text-5xl uppercase text-paper md:text-7xl">
-            Different trades. Same storm.
-          </h1>
-          <p className="mt-6 max-w-2xl text-base leading-7 text-paper/70">
+      <section className="border-b border-line-dark bg-dusk text-paper">
+        <div className="mx-auto max-w-7xl px-5 py-16 md:px-10 md:py-24">
+          <h1 className="display max-w-4xl text-4xl md:text-6xl">Different trades. Same storm.</h1>
+          <p className="mt-6 max-w-2xl text-[15px] leading-8 text-paper/75">
             A dental practice and a machine shop don&apos;t have the same problems — they have the
             same storm hitting different roofs. Programs below are tuned per sector, not copied
             across them.
@@ -79,23 +75,24 @@ export default function IndustriesPage() {
 
       <section className="border-b border-line bg-paper">
         <div className="mx-auto max-w-7xl px-5 py-20 md:px-10 md:py-28">
-          <SectionHead index="01" label="Sector programs" title="Where we work" />
-          <div className="grid grid-cols-1 gap-px border border-line bg-line md:grid-cols-2">
-            {industries.map((ind, i) => (
-              <div key={ind.name} className="group bg-paper px-6 py-8 transition-colors hover:bg-paper-2 md:px-8">
-                <div className="flex items-baseline justify-between gap-4">
-                  <span className="font-mono text-sm text-mute">{String(i + 1).padStart(2, "0")}</span>
-                  <span className="kicker text-signal-deep">{ind.need}</span>
-                </div>
-                <h2 className="mt-4 text-2xl font-extrabold uppercase tracking-tight text-ink group-hover:text-signal">
-                  {ind.name}
-                </h2>
-                <p className="mt-3 text-sm leading-6 text-mute">{ind.detail}</p>
+          <SectionHead
+            title="Where we work"
+            note="Eight sectors, each with a written program — not a template with your logo pasted on."
+          />
+          <div className="border-t border-line">
+            {industries.map((ind) => (
+              <div
+                key={ind.name}
+                className="grid grid-cols-1 gap-3 border-b border-line py-8 md:grid-cols-[1fr_220px_1.4fr] md:items-baseline md:gap-10"
+              >
+                <h2 className="font-serif text-2xl font-semibold tracking-tight text-ink">{ind.name}</h2>
+                <Label className="text-signal-deep">{ind.need}</Label>
+                <p className="text-sm leading-7 text-ink/70">{ind.detail}</p>
               </div>
             ))}
           </div>
           <div className="mt-12 flex flex-col items-start justify-between gap-6 border-t border-line pt-10 md:flex-row md:items-center">
-            <p className="max-w-xl text-sm leading-6 text-mute">
+            <p className="max-w-xl text-sm leading-7 text-ink/70">
               Don&apos;t see your sector? If you have 10–250 people and systems that can&apos;t go
               down, the program transfers. Ask us — worst case you get a straight answer and a
               referral.
